@@ -12,24 +12,26 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
     //userName => required | string | min 3
     if($name == "")
     {
-       $errors[]="name is required";
+       $errors[]="  name is required";
     }
     elseif(!is_string($name))
     {
-      $errors[]="name must be string";
+      $errors[]="  name must be string";
     }
     elseif(strlen($name)<3)
     {
-      $errors[]="name must be more than 3 char";
+      $errors[]=" name must be more than 3 char";
     }
     //email => required | email | unique
     if($email == "")
-    {
-       $errors[]="email is required";
+    { 
+      echo "<br>";
+       $errors[]="   email is required";
+       echo "<br>";
     }
     elseif( !filter_var($email,FILTER_VALIDATE_EMAIL))
     {
-      $errors[]="email not valid";
+      $errors[]="  email not valid";
     }
     $checkEmail="select * from patient where `email`= '$email'";
     $runcheckEmail=mysqli_query($conn,$checkEmail);
@@ -41,11 +43,11 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
     //password => required | min:4
     if($password == "")
     {
-       $errors[]="password is required";
+       $errors[]=" password is required";
     }
     elseif(strlen($password)<4)
     {
-      $errors[]="password must be more than 4";
+      $errors[]=" password must be more than 4";
     }
 
 
@@ -54,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
 
     if($phone == "")
     {
-       $errors[]="phone is required";
+       $errors[]="  phone is required";
     }
     elseif(preg_match($phoneRegex,$phone) !=1)
     {
@@ -65,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
    $phoneRows=mysqli_num_rows($runcheck_phone);
    if($phoneRows >0 )
    {
-    $errors[]="phone already exist";
+    $errors[]="  phone already exist";
    }
 
     //address => required
@@ -94,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
     else
     {
       foreach($errors as $error)
-      { 
+      {  
         echo $error;
              
       }

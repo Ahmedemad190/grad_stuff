@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
      }
   if( empty($errors))
    {
-    $query="select * from donor where email='$email'";
+    $query="select * from patient where email='$email'";
     $runQuery=mysqli_query($conn,$query);
     if($runQuery) 
     {
